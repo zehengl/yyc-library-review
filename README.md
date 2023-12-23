@@ -26,3 +26,8 @@ An aggreation of your data in Calgary Public Library
     mkdocs serve
 
 ## Credits
+
+- [Logo][1] by [Just Icon][2]
+
+[1]: https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Book-512.png
+[2]: https://www.iconfinder.com/justicon
