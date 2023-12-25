@@ -4,4 +4,4 @@
 
 # yyc-library-review
 
-An aggreation of your data in Calgary Public Library
+An aggregation of your data in Calgary Public Library
