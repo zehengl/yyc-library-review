@@ -5,3 +5,7 @@
 # yyc-library-review
 
 An aggregation of your data in Calgary Public Library
+
+## Example
+
+![](./example.png)
