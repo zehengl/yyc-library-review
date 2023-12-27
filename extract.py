@@ -40,21 +40,32 @@ for url in tqdm(urls, desc="Extracting"):
 
     for book in books:
         title = book.find_element(By.CSS_SELECTOR, ".title-content").text
+        href = book.find_element(
+            By.CSS_SELECTOR, 'a[data-key="bib-title"]'
+        ).get_attribute("href")
         try:
             author = book.find_element(By.CSS_SELECTOR, ".cp-author-link").text
         except:
             author = None
+        try:
+            subtitle = book.find_element(By.CSS_SELECTOR, ".cp-subtitle").text
+        except:
+            subtitle = None
         date = book.find_element(By.CSS_SELECTOR, ".cp-short-formatted-date").text
-        items.append((title, author, date))
+        items.append((title, subtitle, href, author, date))
+
 
 # %%
 df = pd.DataFrame(items)
-df.columns = ["title", "author", "added date"]
+df.columns = ["title", "subtitle", "url", "author", "added date"]
 df.to_csv(output / "data.csv", index=False)
 
 # %%
 df["added date"] = pd.to_datetime(df["added date"])
-df["author"] = df["author"].apply(lambda v: " ".join(v.split(", ")[::-1]) if v else v)
+has_author = ~df["author"].isna()
+df.loc[has_author, "author"] = df.loc[has_author, "author"].apply(
+    lambda v: " ".join(v.split(", ")[::-1])
+)
 
 # %%
 summary1 = df.groupby(df["added date"].dt.year).count()[["title"]].reset_index()
@@ -120,7 +131,7 @@ month = calendar.month_name[
 ax.set_title(f"You read the most in {month}", {"fontsize": 14})
 
 # ax3
-num_authors = 9
+num_authors = 12
 ax = sns.barplot(
     data=summary3.head(num_authors),
     x="author",
@@ -132,7 +143,7 @@ ax = sns.barplot(
 author = summary3.head(1)["author"].iloc[0]
 ax.set_title(f"You read the most by {author}", {"fontsize": 14})
 ax.set_xticklabels(ax.get_xticklabels(), fontsize=8, rotation=30)
-ax.set_xlabel("")
+ax.set_xlabel(f"Top {num_authors} Authors")
 fig.savefig(output / "year-end-review.png", bbox_inches="tight", dpi=300)
 
 # %%
