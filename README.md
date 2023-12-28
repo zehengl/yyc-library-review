@@ -14,6 +14,13 @@ An aggregation of your data in Calgary Public Library
 
 ## Getting Started
 
+First, create a `.env` file to configure the [Calgary Public Library][3] account.
+
+    cpl_username=...
+    cpl_password=...
+
+Then, install and execute
+
     python -m venv .venv
     .venv\Scripts\activate
     python -m pip install -U pip
@@ -32,3 +39,4 @@ An aggregation of your data in Calgary Public Library
 
 [1]: https://www.iconfinder.com/icons/9554577/books_education_school_learning_study_book_science_laboratory_chemistry_icon
 [2]: https://www.iconfinder.com/moudesain
+[3]: https://calgarylibrary.ca
