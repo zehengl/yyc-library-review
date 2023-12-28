@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Book-512.png" alt="logo" height="128">
+    <img src="https://cdn3.iconfinder.com/data/icons/back-to-schools/120/Books_2-512.png" alt="logo" height="128">
 </div>
 
 # yyc-library-review
@@ -18,6 +18,7 @@ An aggregation of your data in Calgary Public Library
     .venv\Scripts\activate
     python -m pip install -U pip
     pip install -r requirements.txt
+    python extract.py
 
 > Use `pip install -r requirements-dev.txt` for development and docs.
 
@@ -27,7 +28,7 @@ An aggregation of your data in Calgary Public Library
 
 ## Credits
 
-- [Logo][1] by [Just Icon][2]
+- [Logo][1] by [Muhamad Taupik][2]
 
-[1]: https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Book-512.png
-[2]: https://www.iconfinder.com/justicon
+[1]: https://www.iconfinder.com/icons/9554577/books_education_school_learning_study_book_science_laboratory_chemistry_icon
+[2]: https://www.iconfinder.com/moudesain

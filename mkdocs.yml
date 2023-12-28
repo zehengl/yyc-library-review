@@ -3,8 +3,8 @@ nav:
   - Home: index.md
 theme:
   name: material
-  favicon: https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Book-512.png
-  logo: https://cdn3.iconfinder.com/data/icons/education-and-school-8/48/Book-512.png
+  favicon: https://cdn3.iconfinder.com/data/icons/back-to-schools/120/Books_2-512.png
+  logo: https://cdn3.iconfinder.com/data/icons/back-to-schools/120/Books_2-512.png
   font:
     text: Roboto
   palette:
@@ -37,3 +37,11 @@ plugins:
 markdown_extensions:
   - attr_list
   - md_in_html
+repo_name: yyc-library-review
+repo_url: https://github.com/zehengl/yyc-library-review
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/zehengl
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/zehengl
