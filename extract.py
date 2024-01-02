@@ -20,13 +20,17 @@ driver.type("user_pin", cpl_password, by="name")
 driver.click('input[name="commit"]')
 driver.sleep(20)
 
-last_page = driver.find_elements('a[data-key="page-link"]')[-1]
-last_page_num = int(last_page.get_attribute("data-page"))
-last_page_url = last_page.get_attribute("href")
-q = urlparse(last_page_url).query
-urls = [None] + [
-    last_page_url.replace(q, f"page={i}") for i in range(2, last_page_num + 1)
-]
+try:
+    last_page = driver.find_elements('a[data-key="page-link"]')[-1]
+    last_page_num = int(last_page.get_attribute("data-page"))
+    last_page_url = last_page.get_attribute("href")
+    q = urlparse(last_page_url).query
+    extra_urls = [
+        last_page_url.replace(q, f"page={i}") for i in range(2, last_page_num + 1)
+    ]
+except:
+    extra_urls = []
+urls = [None] + extra_urls
 urls
 
 # %%
@@ -107,7 +111,7 @@ ax = sns.barplot(
     x="added year",
     y="# of titles",
     palette=pal,
-    hue="# of titles",
+    hue="added year",
     ax=ax1,
 )
 total = summary1["# of titles"].iloc[-1]
