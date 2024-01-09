@@ -9,7 +9,14 @@ from selenium.webdriver.common.by import By
 from seleniumbase import Driver
 from tqdm import tqdm
 
-from settings import cpl_password, cpl_username, output
+from settings import cpl_password, cpl_username, cutoff_year, early_exit, output
+
+# %%
+try:
+    existing_urls = pd.read_csv(output / "data.csv")["url"].tolist()
+except:
+    existing_urls = []
+existing_urls
 
 # %%
 driver = Driver(headless=True)
@@ -42,6 +49,7 @@ for url in tqdm(urls, desc="Extracting"):
 
     books = driver.find_elements(".item-header")
 
+    end = False
     for book in books:
         title = book.find_element(By.CSS_SELECTOR, ".title-content").text
         href = book.find_element(
@@ -56,12 +64,34 @@ for url in tqdm(urls, desc="Extracting"):
         except:
             subtitle = None
         date = book.find_element(By.CSS_SELECTOR, ".cp-short-formatted-date").text
+
+        if early_exit and href in existing_urls:
+            end = True
+            break
+
         items.append((title, subtitle, href, author, date))
+
+    if end:
+        break
 
 
 # %%
-df = pd.DataFrame(items)
-df.columns = ["title", "subtitle", "url", "author", "added date"]
+if items:
+    df = pd.DataFrame(items)
+    df.columns = ["title", "subtitle", "url", "author", "added date"]
+else:
+    df = pd.DataFrame()
+
+if early_exit:
+    try:
+        existing = pd.read_csv(output / "data.csv")
+    except:
+        existing = pd.DataFrame()
+    df = pd.concat([df, existing], ignore_index=True)
+
+df
+
+# %%
 df.to_csv(output / "data.csv", index=False)
 
 # %%
@@ -70,6 +100,11 @@ has_author = ~df["author"].isna()
 df.loc[has_author, "author"] = df.loc[has_author, "author"].apply(
     lambda v: " ".join(v.split(", ")[::-1])
 )
+
+# %%
+if cutoff_year:
+    df = df[df["added date"].dt.year <= cutoff_year]
+
 
 # %%
 summary1 = df.groupby(df["added date"].dt.year).count()[["title"]].reset_index()
@@ -148,6 +183,6 @@ author = summary3.head(1)["author"].iloc[0]
 ax.set_title(f"You read the most by {author}", {"fontsize": 14})
 ax.set_xticklabels(ax.get_xticklabels(), fontsize=8, rotation=30)
 ax.set_xlabel(f"Top {num_authors} Authors")
-fig.savefig(output / "year-end-review.png", bbox_inches="tight", dpi=300)
+fig.savefig(output / f"year-end-review-{year}.png", bbox_inches="tight", dpi=300)
 
 # %%
