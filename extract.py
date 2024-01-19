@@ -150,14 +150,16 @@ ax = sns.barplot(
     ax=ax1,
 )
 total = summary1["# of titles"].iloc[-1]
-ax.set_title(f"You read {total} books in {year}", {"fontsize": 14})
+ax.set_xlabel("Year")
+ax.set_title(f"I read {total} books in {year}", {"fontsize": 14})
 
 # ax2
+num_palettes = summary2["# of titles"].value_counts().count()
 ax = sns.barplot(
     data=summary2,
     x="added month",
     y="# of titles",
-    palette=sns.color_palette("Reds_r", summary2["added month"].shape[0]),
+    palette=sns.color_palette("Reds_r", num_palettes),
     hue="# of titles",
     hue_order=summary2["# of titles"].sort_values(ascending=False).values,
     ax=ax2,
@@ -167,21 +169,26 @@ month = calendar.month_name[
         "added month"
     ].iloc[0]
 ]
-ax.set_title(f"You read the most in {month}", {"fontsize": 14})
+ax.set_xlabel("Month")
+ax.set_title(f"I read the most in {month}", {"fontsize": 14})
 
 # ax3
-num_authors = 12
+num_authors = min(12, summary3["author"].nunique())
 ax = sns.barplot(
     data=summary3.head(num_authors),
     x="author",
     y="# of titles",
-    palette=sns.color_palette("Reds_r", num_authors)[::-1],
+    palette=sns.color_palette("Reds_r", num_authors),
+    hue_order=summary3["# of titles"]
+    .sort_values(ascending=False)
+    .head(num_authors)
+    .values,
     hue="# of titles",
     ax=ax3,
 )
 author = summary3.head(1)["author"].iloc[0]
-ax.set_title(f"You read the most by {author}", {"fontsize": 14})
-ax.set_xticklabels(ax.get_xticklabels(), fontsize=8, rotation=30)
+ax.set_title(f"I read the most by {author}", {"fontsize": 14})
+ax.tick_params(axis="x", labelrotation=30, labelsize=9)
 ax.set_xlabel(f"Top {num_authors} Authors")
 fig.savefig(output / f"year-end-review-{year}.png", bbox_inches="tight", dpi=300)
 
