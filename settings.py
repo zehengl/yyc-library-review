@@ -9,6 +9,7 @@ cpl_username = getenv("cpl_username")
 cpl_password = getenv("cpl_password")
 cutoff_year = getenv("cutoff_year")
 early_exit = getenv("early_exit")
+browser = getenv("browser") or "chrome"
 
 assert cpl_username
 assert cpl_password

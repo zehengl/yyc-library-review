@@ -9,7 +9,14 @@ from selenium.webdriver.common.by import By
 from seleniumbase import Driver
 from tqdm import tqdm
 
-from settings import cpl_password, cpl_username, cutoff_year, early_exit, output
+from settings import (
+    browser,
+    cpl_password,
+    cpl_username,
+    cutoff_year,
+    early_exit,
+    output,
+)
 
 # %%
 try:
@@ -19,7 +26,7 @@ except:
 existing_urls
 
 # %%
-driver = Driver(headless=True)
+driver = Driver(headless=True, browser=browser)
 
 driver.get("https://calgary.bibliocommons.com/collection/show/my/library/completed")
 driver.type("name", cpl_username, by="name")
