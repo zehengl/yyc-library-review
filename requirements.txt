@@ -1,5 +1,5 @@
 pandas==2.2.0
 python-dotenv==1.0.1
 seaborn==0.13.2
-seleniumbase==4.23.5
+seleniumbase==4.23.6
 tqdm==4.66.2
