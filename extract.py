@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+from matplotlib.ticker import MaxNLocator
 from selenium.webdriver.common.by import By
 from seleniumbase import Driver
 from tqdm import tqdm
@@ -159,6 +160,7 @@ ax = sns.barplot(
 total = summary1["# of titles"].iloc[-1]
 ax.set_xlabel("Year")
 ax.set_title(f"I read {total} books in {year}", {"fontsize": 14})
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
 # ax2
 num_palettes = summary2["# of titles"].value_counts().count()
@@ -178,6 +180,7 @@ month = calendar.month_name[
 ]
 ax.set_xlabel("Month")
 ax.set_title(f"I read the most in {month}", {"fontsize": 14})
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
 # ax3
 num_authors = min(12, summary3["author"].nunique())
@@ -197,6 +200,7 @@ author = summary3.head(1)["author"].iloc[0]
 ax.set_title(f"I read the most by {author}", {"fontsize": 14})
 ax.tick_params(axis="x", labelrotation=30, labelsize=9)
 ax.set_xlabel(f"Top {num_authors} Authors")
+ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 fig.savefig(output / f"year-end-review-{year}.png", bbox_inches="tight", dpi=300)
 
 # %%
