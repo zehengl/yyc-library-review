@@ -3,7 +3,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 cpl_username = getenv("cpl_username")
 cpl_password = getenv("cpl_password")

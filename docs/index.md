@@ -16,4 +16,7 @@ To ensure higher accuracy, it is best practice to tag your returned books as soo
 
 ## Example
 
-![Example](./example.png)
+![Example 1](./example1.png)
+
+> Word Cloud of Titles
+> ![Example 2](./example2.png)

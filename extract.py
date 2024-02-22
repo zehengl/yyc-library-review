@@ -9,6 +9,7 @@ from matplotlib.ticker import MaxNLocator
 from selenium.webdriver.common.by import By
 from seleniumbase import Driver
 from tqdm import tqdm
+from wordcloud import WordCloud
 
 from settings import (
     browser,
@@ -202,5 +203,19 @@ ax.tick_params(axis="x", labelrotation=30, labelsize=9)
 ax.set_xlabel(f"Top {num_authors} Authors")
 ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 fig.savefig(output / f"year-end-review-{year}.png", bbox_inches="tight", dpi=300)
+
+# %%
+current["subtitle"] = current["subtitle"].fillna("")
+text = "\n".join(
+    current.apply(
+        lambda row: f"{row['title']} {row['subtitle']}",
+        axis=1,
+    )
+)
+wordcloud = WordCloud(background_color="white").generate(text)
+fig = plt.figure()
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+fig.savefig(output / f"title-wordcloud-{year}", bbox_inches="tight", dpi=300)
 
 # %%
