@@ -9,6 +9,7 @@ from matplotlib.ticker import MaxNLocator
 from selenium.webdriver.common.by import By
 from seleniumbase import Driver
 from tqdm import tqdm
+from unidecode import unidecode
 from wordcloud import WordCloud
 
 from settings import (
@@ -107,7 +108,7 @@ df.to_csv(output / "data.csv", index=False)
 df["added date"] = pd.to_datetime(df["added date"])
 has_author = ~df["author"].isna()
 df.loc[has_author, "author"] = df.loc[has_author, "author"].apply(
-    lambda v: " ".join(v.split(", ")[::-1])
+    lambda v: unidecode(" ".join(v.split(", ")[::-1]))
 )
 
 # %%
