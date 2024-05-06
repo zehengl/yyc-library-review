@@ -105,7 +105,7 @@ df
 df.to_csv(output / "data.csv", index=False)
 
 # %%
-df["added date"] = pd.to_datetime(df["added date"])
+df["added date"] = pd.to_datetime(df["added date"], format="%b %d, %Y")
 has_author = ~df["author"].isna()
 df.loc[has_author, "author"] = df.loc[has_author, "author"].apply(
     lambda v: unidecode(" ".join(v.split(", ")[::-1]))
