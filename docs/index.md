@@ -8,7 +8,7 @@ An aggregation of your data in Calgary Public Library
 
 ## Caveat
 
-This aggregation only considers books that have been tagged as **Completed**. Therefore, the date reflects the time when a book was moved to the **Completed Shelf** collection, not the actual time when you finished reading it.
+This aggregation only considers books that have been tagged as **Completed**. Therefore, the date reflects the time when a book was moved to the [**Completed Shelf**](https://calgary.bibliocommons.com/collection/show/my/library/completed) collection, not the actual time when you finished reading it.
 
 ![Caveat](./caveat.png)
 
