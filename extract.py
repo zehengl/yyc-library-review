@@ -161,7 +161,7 @@ ax = sns.barplot(
 )
 total = summary1["# of titles"].iloc[-1]
 ax.set_xlabel("Year")
-ax.set_title(f"I read {total} books in {year}", {"fontsize": 14})
+ax.set_title(f"I read {total} new books in {year}", {"fontsize": 14})
 ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
 # ax2
