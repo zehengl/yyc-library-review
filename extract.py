@@ -10,7 +10,7 @@ from selenium.webdriver.common.by import By
 from seleniumbase import Driver
 from tqdm import tqdm
 from unidecode import unidecode
-from wordcloud import WordCloud
+from wordcloud import STOPWORDS, WordCloud
 
 from settings import (
     browser,
@@ -213,7 +213,10 @@ text = "\n".join(
         axis=1,
     )
 )
-wordcloud = WordCloud(background_color="white").generate(text)
+wordcloud = WordCloud(
+    background_color="white",
+    stopwords=STOPWORDS | {"vol"},
+).generate(text)
 fig = plt.figure()
 plt.imshow(wordcloud, interpolation="bilinear")
 plt.axis("off")
