@@ -216,6 +216,7 @@ text = "\n".join(
 wordcloud = WordCloud(
     background_color="white",
     stopwords=STOPWORDS | {"vol"},
+    max_words=100,
 ).generate(text)
 fig = plt.figure()
 plt.imshow(wordcloud, interpolation="bilinear")
