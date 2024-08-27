@@ -165,7 +165,7 @@ ax.set_title(f"I read {total} new books in {year}", {"fontsize": 14})
 ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
 # ax2
-num_palettes = summary2["# of titles"].value_counts().count()
+num_palettes = summary2["# of titles"].shape[0]
 ax = sns.barplot(
     data=summary2,
     x="added month",
