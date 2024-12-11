@@ -18,6 +18,7 @@ from settings import (
     cpl_username,
     cutoff_year,
     early_exit,
+    max_words,
     output,
 )
 
@@ -216,7 +217,7 @@ text = "\n".join(
 wordcloud = WordCloud(
     background_color="white",
     stopwords=STOPWORDS | {"vol"},
-    max_words=100,
+    max_words=max_words,
 ).generate(text)
 fig = plt.figure()
 plt.imshow(wordcloud, interpolation="bilinear")
