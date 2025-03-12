@@ -84,7 +84,7 @@ for url in tqdm(urls, desc="Extracting"):
 
     if end:
         break
-
+driver.close()
 
 # %%
 if items:
