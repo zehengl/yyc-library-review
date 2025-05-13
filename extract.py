@@ -127,6 +127,18 @@ summary1
 current = df[df["added date"].dt.year == df["added date"].dt.year.max()]
 summary2 = current.groupby(df["added date"].dt.month).count()[["title"]].reset_index()
 summary2.columns = ["added month", "# of titles"]
+max_month = summary2["added month"].max()
+missing_months = [
+    i for i in range(1, max_month + 1) if i not in summary2["added month"].tolist()
+]
+summary2 = pd.concat(
+    [
+        summary2,
+        pd.DataFrame(
+            {"added month": missing_months, "# of titles": [0] * len(missing_months)}
+        ),
+    ],
+).sort_values(["added month"])
 summary2.to_csv(output / "summary-current-by-month.csv", index=False)
 summary2
 
