@@ -124,7 +124,8 @@ summary1.to_csv(output / "summary-all-by-year.csv", index=False)
 summary1
 
 # %%
-current = df[df["added date"].dt.year == df["added date"].dt.year.max()]
+current_year = df["added date"].dt.year.max()
+current = df[df["added date"].dt.year == current_year]
 summary2 = current.groupby(df["added date"].dt.month).count()[["title"]].reset_index()
 summary2.columns = ["added month", "# of titles"]
 max_month = summary2["added month"].max()
@@ -139,14 +140,16 @@ summary2 = pd.concat(
         ),
     ],
 ).sort_values(["added month"])
-summary2.to_csv(output / "summary-current-by-month.csv", index=False)
+summary2["added month"] = summary2["added month"].astype(int)
+summary2["# of titles"] = summary2["# of titles"].astype(int)
+summary2.to_csv(output / f"summary-{current_year}-by-month.csv", index=False)
 summary2
 
 # %%
 summary3 = current.groupby(df["author"]).count()[["title"]].reset_index()
 summary3.columns = ["author", "# of titles"]
 summary3 = summary3.sort_values("# of titles", ascending=False).reset_index(drop=True)
-summary3.to_csv(output / "summary-current-by-author.csv", index=False)
+summary3.to_csv(output / f"summary-{current_year}-by-author.csv", index=False)
 summary3
 
 # %%
