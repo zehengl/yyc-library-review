@@ -1,7 +1,3 @@
-<figure markdown>
-![Logo](https://cdn3.iconfinder.com/data/icons/back-to-schools/120/Books_2-512.png){ width="100" }
-</figure>
-
 # yyc-library-review
 
 An aggregation of your data in Calgary Public Library
