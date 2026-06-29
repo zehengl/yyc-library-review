@@ -1,7 +1,7 @@
-pandas==3.0.3
+pandas==3.0.4
 python-dotenv==1.2.2
 seaborn==0.13.2
-seleniumbase==4.49.13
-tqdm==4.68.2
+seleniumbase==4.50.3
+tqdm==4.68.3
 unidecode==1.4.0
 wordcloud==1.9.6
