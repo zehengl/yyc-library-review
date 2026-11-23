@@ -19,6 +19,7 @@ from settings import (
     cutoff_year,
     early_exit,
     max_words,
+    move_legend_outside,
     output,
 )
 
@@ -199,6 +200,8 @@ month = calendar.month_name[
 ax.set_xlabel("Month")
 ax.set_title(f"I read the most in {month}", {"fontsize": 14})
 ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+if move_legend_outside:
+    sns.move_legend(ax, "upper left", bbox_to_anchor=(1, 1))
 
 # ax3
 num_authors = min(12, summary3["author"].nunique())

@@ -11,6 +11,7 @@ cutoff_year = getenv("cutoff_year")
 early_exit = getenv("early_exit")
 browser = getenv("browser") or "chrome"
 max_words = getenv("max_words")
+move_legend_outside = getenv("move_legend_outside") in ["yes", "1", "true"]
 
 assert cpl_username
 assert cpl_password
