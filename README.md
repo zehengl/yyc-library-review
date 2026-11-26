@@ -7,7 +7,7 @@ An aggregation of your data in Calgary Public Library
 
 ## Environment
 
-- Python 3.9
+- Python 3.15
 
 ## Getting Started
 

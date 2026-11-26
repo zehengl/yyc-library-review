@@ -1,0 +1,59 @@
+[project]
+site_name = "yyc-library-review"
+nav = [{ "Home" = "index.md" }]
+repo_name = "yyc-library-review"
+repo_url = "https://github.com/zehengl/yyc-library-review"
+
+[project.plugins.minify]
+minify_html = true
+minify_css = true
+
+[project.plugins.git-revision-date-localized]
+type = "timeago"
+enable_creation_date = true
+
+[project.theme]
+variant = "classic"
+font.text = "Roboto"
+features = ["header.autohide", "navigation.top", "navigation.footer"]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "material/brightness-auto"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "red"
+accent = "red"
+toggle.icon = "material/toggle-switch"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "pink"
+accent = "pink"
+toggle.icon = "material/toggle-switch-off-outline"
+toggle.name = "Switch to light mode"
+
+[project.plugins.glightbox]
+auto = true
+auto_caption = false
+caption_position = "bottom"
+
+[project.markdown_extensions]
+def_list = {}
+attr_list = {}
+md_in_html = {}
+
+[project.markdown_extensions.pymdownx.emoji]
+emoji_index = "zensical.extensions.emoji.twemoji"
+emoji_generator = "zensical.extensions.emoji.to_svg"
+
+[project.extra]
+social = [
+  { icon = "fontawesome/brands/github", link = "https://github.com/zehengl" },
+  { icon = "fontawesome/brands/linkedin", link = "https://linkedin.com/in/zehengl" },
+]
